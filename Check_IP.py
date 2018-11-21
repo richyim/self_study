@@ -42,7 +42,7 @@ def connect(ip_address, username, password):
         exit()
 
     session.sendline(password)
-    result = session.expect(['>', pexpect.TIMEOUT])
+    result = session.expect(['#', pexpect.TIMEOUT])
 
     # Check for error, if so then print error and exit
     if result != 0:
@@ -78,7 +78,7 @@ version_file_out = open('version-info-out', 'w')
 for ip_address in devices_list:
 
     # Connect to the device via CLI and get version information
-    session = connect(ip_address, 'cisco', 'cisco')
+    session = connect(ip_address, 'admin', 'EQC1sc0123')
     device_version = get_version_info(session)
 
     session.close()  # Close the session
